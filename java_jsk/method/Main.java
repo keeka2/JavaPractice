@@ -1,0 +1,130 @@
+class Tv
+{
+	boolean power;
+	int [] channel = {1,3,5,7,9,11,12,13,141,523};
+	int channelNum=0;
+	boolean checkMute;
+	int beforeSound=0;
+
+	int sound;
+
+	void powerChange(){power = !power;}
+	void channelUp(){
+		if(power){
+			channelNum++;
+			if(channelNum>=channel.length){
+				channelNum=0;
+			}
+		}
+	}
+	void channelDown(){
+		if(power){
+			channelNum--;
+			if(channelNum<0){
+				channelNum=9;
+			}
+		}
+	}
+	void channelChange(int ch){ 
+		if(power){
+			for(int i=0;i<channel.length;i++){
+				if(channel[i]==ch){
+					channelNum=i;
+					break;
+				}
+			}
+		}
+	}
+
+
+//»ç¿îµå
+	void soundUp(){
+		if (power && !checkMute)
+		{
+			if(sound<10){
+				sound++;
+			}
+		}
+	}
+
+	void soundDown(){
+		if(power && !checkMute){
+			if(sound>0){
+				sound--;
+			}
+		}
+	}
+
+	void mute(){
+		if(power){
+			checkMute=!checkMute;
+			int temp=sound;
+			sound=beforeSound;
+			beforeSound=temp;
+		}
+	}
+
+	void display(){
+		System.out.println("ch: "+channel[channelNum]);
+		System.out.println("power: "+power);
+		System.out.println("sound: "+sound);
+		System.out.println();
+	}
+}
+
+
+class Main 
+{
+	public static void main(String[] args) 
+	{
+		Tv tv1 = new Tv();
+		tv1.display();
+
+		tv1.powerChange();
+		tv1.mute();
+		/*for(int i=0;i<101;i++){
+			tv1.channelUp();
+			tv1.display();
+		}*/
+
+		//1 2 1 0 0 1 3
+		tv1.channelDown();
+		tv1.soundUp();
+		tv1.display();
+
+		tv1.soundUp();
+		tv1.channelDown();
+		tv1.display();
+
+		tv1.soundDown();
+		tv1.channelDown();
+		tv1.display();
+
+		tv1.mute();
+		tv1.soundDown();
+		tv1.display();
+
+		tv1.soundDown();
+		tv1.display();
+
+		tv1.mute();
+		tv1.display();
+
+		tv1.soundUp();
+		tv1.soundUp();
+		tv1.display();
+
+
+
+		tv1.mute();
+		tv1.display();
+
+		tv1.channelChange(123);
+		tv1.display();
+		tv1.channelChange(1);
+		tv1.display();
+		tv1.mute();
+		tv1.channelDown();
+		tv1.display();
+	}
+}
