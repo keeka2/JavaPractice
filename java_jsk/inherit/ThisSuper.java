@@ -1,0 +1,40 @@
+/*
+this 메소드와 super 메소드는 생성자 안에서만 가능
+함게 사용하지 못함(둘 다 첫번째로 실행되어야 하기 때문)
+
+super - 조상의 생성자 호출
+this - 
+
+상속시 - 변수는 각자의 클래스에서 초기화 하는것이 좋다
+*/
+
+class AA extends Object
+{
+	int x = 10;
+	AA(){
+		x=1000;
+		System.out.println("A의 생성자");
+	}
+}
+
+class BB extends AA
+{
+	int y = 20;
+	BB(){
+		//super(); //부모의 생성자 호출
+		//x=1000;
+		y=2000;
+		System.out.println("B의 생성자");
+	}
+}
+
+class ThisSuper 
+{
+	public static void main(String[] args) 
+	{
+		BB b = new BB();
+		System.out.println(b.x);
+		System.out.println(b.y);
+
+	}
+}
