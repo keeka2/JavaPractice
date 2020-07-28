@@ -1,0 +1,62 @@
+/*
+class - default or public만 가능(private class AA{}이런거는 안됨)
+클래스 외의 인스턴스 멤버, 클래스 멤버, 생성자는 모든 접근제어자 사용가능
+
+public: 모두 허용
+protected: 
+default: 같은 폴더 안에 있는 클래스
+private: 같은 클래스 접근만 허용
+
+==> 캡슐화
+*/
+
+class Acc
+{
+	public static int a=10;
+	private static int b=20;
+	private static int c=b;
+
+	//메소드에서도 마찬가지임
+
+	//생성자에도 가능 - private붙이면 객체 생성 불가능
+	/*
+	private Acc(){
+		
+	}*/
+}
+
+class Human
+{
+	int age; //1~100 사이의 값만 넣고 싶다
+
+	//검사하고 대입 할 수 있게 -> 캡슐화
+	//메소드를 통해 간접 접근
+	private int age2;
+	public void setAge(int a){
+		if (a<100 && a>0){
+			this.age2=a;
+		}else{
+			System.out.println("1~100");
+		}
+	}
+
+	public int getAge(){
+		return this.age2;
+	}
+
+}
+
+class TestAcc
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(Acc.a);
+		//System.out.println(Acc.b); - 에러
+
+		Human hm = new Human();
+		hm.age = 10000;//원래는 10000가 들어가면 안됨
+
+		hm.setAge(99);
+		System.out.println(hm.getAge());
+	}
+}

@@ -1,0 +1,28 @@
+class Apple
+{
+	int a = 1;
+	static Naver n1 = new Naver();//참조형 객체를 만듦
+}
+
+class Naver
+{
+	int b = 10;
+	Google go = new Google();
+}
+
+class Google
+{
+	int c = 100;
+}
+class Review 
+{
+	public static void main(String[] args) 
+	{
+		Naver n = new Naver();
+		System.out.println(Apple.n1.b);
+		System.out.println(n.go);
+		System.out.println(Apple.n1.go);
+	}
+}
+
+//static 붙은 Naver n1이 메모리에 먼저 올라감
