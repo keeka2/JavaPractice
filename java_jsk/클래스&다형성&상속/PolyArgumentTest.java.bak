@@ -13,6 +13,15 @@ class Product {
 class Market
 {
 	ArrayList<Product> productList;
+	int cash;
+
+	void addProduct(Product p){
+		productList.add(p);
+	}
+	Market(){
+		productList = new ArrayList<Product>();
+		this.cash=0;
+	}
 }
 
 class Tv extends Product {
@@ -54,10 +63,11 @@ class Buyer {
 			return;
 		}
 
+		m.cash+=p.price;
 		money -= p.price;			
 		bonusPoint += p.bonusPoint;	
 		System.out.println(p.toString() + "을/를 구입하셨습니다.");
-	}
+	} 
 }
 
 class PolyArgumentTest {
@@ -66,15 +76,15 @@ class PolyArgumentTest {
 		//Buyer 객체 생성
 		Buyer b = new Buyer();
 		Market m = new Market();
-		m.productList = new ArrayList<Product>();
 
 		//Product - Tv 생성
 		Tv tv = new Tv();
 		//m.productList.add((Product)tv);
+		m.addProduct(tv);
 
 		//Product - Computer 생성
 		Computer com = new Computer();
-		m.productList.add((Product)com);
+		m.addProduct(com);
 
 		//b객체가 buy메소드 호출
 		b.buy(tv,m);
@@ -84,5 +94,6 @@ class PolyArgumentTest {
 
 		System.out.println("현재 남은 돈은 " + b.money + "만원입니다.");
 		System.out.println("현재 보너스점수는 " + b.bonusPoint + "점입니다.");
+		System.out.println("매출은 " + m.cash + "만원입니다.");
 	}
 }
