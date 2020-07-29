@@ -9,9 +9,9 @@ class Parent
 
 class Child extends Parent
 {
-	//int x = 200;
+	int x = 200;
 	void method(){
-		//int x = 300; // 지역 변수 -> 인스턴스 변수 -> 물려받은 변수 순으로 씀
+		int x = 300; // 지역 변수 -> 인스턴스 변수 -> 물려받은 변수 순으로 씀
 		System.out.println("Child Method");
 		System.out.println("x=" + x); // 300(지역)
 		System.out.println("super.x="+super.x); // 100(조상님꺼)

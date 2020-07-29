@@ -10,7 +10,7 @@
 객체지향: 메모리에 올려 쓰는 것 -> static:항상 쓸 수 있으므로 메모리에 상주, 객체: 필요 할 때 메모리에 올려 씀
 
 */
-
+import java.math.BigInteger;
 class Kor
 {
 	//이런식으로 다른 클래스 변수 가져올 수 있음
@@ -19,6 +19,7 @@ class Kor
 
 
 }
+
 class clmt 
 {
 	int x=10; //인스턴스 변수
@@ -28,7 +29,7 @@ class clmt
 
 
 	void add(){
-		System.out.println(x);
+		System.out.println(this.x);
 		System.out.println(y);
 	}
 
@@ -38,23 +39,19 @@ class clmt
 
 	public static void main(String[] args) 
 	{
-		//System.out.println(x);  오류
-		System.out.println(clmt.y);
-		clmt.print();//메소드 앞에 클래스 생략해도 되는데 왠만하면 안하는게 좋음
+		int a = 1;
+		BigInteger big = new BigInteger("1");
+		for(int i =1; i<101;i++){
+			a=a+i;
+			big = big.multiply(BigInteger.valueOf(i));
+		}
+		System.out.println(a);
+		System.out.println(big);
 
-
-		//클래스에서 인스턴스 사용하려면 객체를 생성하고 사용해야함
-		clmt test = new clmt();
-		System.out.println(test.x);
-		System.out.println(Kor.name);
-
-		//add메소드 호출
-		new clmt().add();
-
-		clmt c = new clmt();
-		c.add();
 
 	}
+
+	
 }
 
 

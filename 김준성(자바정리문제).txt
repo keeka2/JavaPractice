@@ -1,0 +1,168 @@
+1. 4
+
+2. 2
+
+3. 1
+
+4. 3
+
+5. 2
+
+6. 1
+
+7. 1
+
+8. 1
+
+9. 1
+
+10. 4
+
+11. 자바도 구별됨
+
+12. no
+
+13. 중복X, 공백X, 숫자시작X '_','$'외의 특수문자
+
+14. boolean, byte, short, long, float, char, int, double ...
+
+15. 16진수:BD / 8진수:275 / 10진수: 189
+
+16. 65535
+
+17. 자료형이 다름
+float f = (float)d;
+
+18. static
+
+19. 
+i: 11
+n: 0
+
+20. args[0]="123"이고 args[1]은 없으므로 인덱스 에러
+
+21. 0
+
+22. 97, 이유는 잘 모르겠습니다
+
+23.
+String k = "";
+for(int i=0;i<5;i++){
+     k+="*";
+     System.out.println(k);
+}
+
+24.
+private 변수 a를 다른 클래스에서 그냥 사용하려고 한다
+
+25.
+메소드 생성자 (fred->Fred)
+
+26.
+null
+
+27.
+protected는 클래스 앞에 못붙음
+
+28. 잘됨
+
+29. 
+10, 20 - 매개변수이므로 함수 종료되면 앞에는 적용이 안됨
+
+30.
+자신의 생성자: this
+조상의 생성자: super
+주의점: 
+
+31.
+hi.a+=a;
+결과: 4
+
+32.
+5
+Sub
+
+33.
+결과: base
+오버라이드가 안됨(하나는 private 다른 하나는 public으로 선언됨)->부모의 f()메소드 호출
+
+34.
+Equal 11
+
+35. 3
+
+36. E
+
+37. CD
+
+38. C
+
+29. A
+
+40. D???
+
+41. C
+
+42. C
+
+43. BC
+
+44. C
+
+45. 3
+
+46. 3
+
+47.
+인스턴스 변수: 힙영역
+매개변수,지역변수: 스택 메모리 영역
+
+48. 클래스로 객체를 만드는 것임
+
+49.
+오버로딩: 같은 클래스 내에 같은 이름의 메소드 생성(매개변수 타입이나 개수가 다름)
+오버라이딩: 상속 관계에서 같은 메소드 재정의(구현부, 매개변수 같음)
+
+50.
+class Singleton{
+     private static Singleton single;//객체를 static으로 선언 후 이거 하나만 씀
+     private single(){}
+     public static Singleton getInstance(){
+            if (single==null){
+	   single = new Singleton();
+	}
+	return single;    
+     } 
+}
+
+51.
+int a = 1;
+BigInteger big = new BigInteger("1");
+for(int i =1; i<101;i++){
+	a=a+i;
+	big = big.multiply(BigInteger.valueOf(i));
+}
+System.out.println(a);
+System.out.println(big);
+
+52. 
+상속화: 클래스 확장 / 재사용 - extends
+추상화: (인터페이스/추상클래스) 추상 메소드 구현 강제
+다형성: 상속관계에서 조상의 참조 변수로 자손의 객체를 참조하는 것
+캡슐화: 접근제어자를 활용하여 변수에 직접 접근을 막고 메소드를 이용하여 접근함
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
