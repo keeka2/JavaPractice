@@ -1,0 +1,29 @@
+//static은 미리 메모리에 올라감
+class A
+{
+	static class B{
+		static int x = 100;
+		int y = 0;
+	}
+
+	class C
+	{
+		int z = 10;
+	}
+}
+
+class Main4
+{
+	public static void main(String[] args) 
+	{
+		System.out.println(A.B.x);
+		A.B ab = new A.B();
+		//인스턴스는 객체를 생성해야 쓸 수 있다
+		System.out.println(ab.y);
+
+		A a = new A();
+		//a.new B().z;
+		System.out.println(a.new B().z);
+
+	}
+}

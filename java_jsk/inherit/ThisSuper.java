@@ -11,8 +11,8 @@ this -
 class AA extends Object
 {
 	int x = 10;
-	AA(){
-		x=1000;
+	AA(int x){
+		this.x=x;
 		System.out.println("A의 생성자");
 	}
 }
@@ -23,6 +23,7 @@ class BB extends AA
 	BB(){
 		//super(); //부모의 생성자 호출
 		//x=1000;
+		super(500);
 		y=2000;
 		System.out.println("B의 생성자");
 	}

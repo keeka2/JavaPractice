@@ -1,0 +1,21 @@
+class A{
+	class AAA{
+
+	}
+}
+
+classB{}
+classC{}
+
+=>
+___A___   B    C
+|       |
+| AAA | 
+|______|
+
+
+익명 클래스 - 상속이나 구현 둘 중 하나 해야함(1회용 클래스) 잘 안씀
+A a = new A();
+A a = new A(){
+	@Overriding
+}
