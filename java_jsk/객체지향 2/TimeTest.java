@@ -38,5 +38,7 @@ class Time {
             if (second < 0 || second > 59) return; 
             this.second = second; 
       } 
-
+      public String toString() { 
+            return hour + ":" + minute + ":" + second; 
+      } 
 } 

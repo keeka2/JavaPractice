@@ -75,6 +75,23 @@ public class Main{
 		sb.append("qweqwe");
 		System.out.println(sb);
 		
+		
+		///////////////////////////////Equals 오버라이딩 판별/////////////////////////////////////////
+		TV t1 = new TV();
+		TV t2 = new TV();
+		t1.equals(t2);//->false TV는 equals 오버라이딩 안하므로(==와 같은 결과)
+		//String 은 오버라이딩 하므로 True나옴
+		StringBuffer st1 = new StringBuffer("abc");
+		StringBuffer st2 = new StringBuffer("abc");
+		System.out.println(st1.equals(st2));
+		System.out.println();
+		
+		
+		Person p1 = new Person(123111111111L);
+		Person p2 = new Person(123111111111L);
+		System.out.println(p1==p2);
+		System.out.println(p1.equals(p2));
+		
 	}
 
 }
