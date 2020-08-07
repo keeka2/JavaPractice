@@ -15,9 +15,9 @@ public class TcpIpMultichatServer {
 		ServerSocket serverSocket = null;
 		Socket socket = null;
 
-		//포트번호의 범위: 
-		//사용중인 포트 번호 확인 방법:
-		//자기 컴퓨터 IP확인 방법:
+		//포트번호의 범위: 0부터 65535
+		//사용중인 포트 번호 확인 방법: cmd - netstat
+		//자기 컴퓨터 IP확인 방법: cmd - ipconfig
 		try {
 			serverSocket = new ServerSocket(8007);
 			System.out.println("서버가 시작되었습니다.");
@@ -26,6 +26,8 @@ public class TcpIpMultichatServer {
 				// 새로운 소켓을 생성 클라이언트가 들어왔을때 , 접속했을때  실행되는 구문
 				socket = serverSocket.accept();
 				System.out.println("["+socket.getInetAddress() + ":"+socket.getPort()+"]"+"에서 접속하였습니다.");
+
+				//연결을 계속 받아주기 위해 사용자 한명당 쓰레드 하나씩 만들어줌
 				ServerReceiver thread = new ServerReceiver(socket);
 				thread.start();
 			}
@@ -35,6 +37,7 @@ public class TcpIpMultichatServer {
 	} // start()
 
 	void sendToAll(String msg) {
+		//반복을 하기 위해 모든 사용자를 꺼냄
 		Iterator it = clients.keySet().iterator();
 		
 		while(it.hasNext()) {
@@ -50,6 +53,8 @@ public class TcpIpMultichatServer {
 		new TcpIpMultichatServer().start();
 	} 
 
+
+	//사용ㅈ 접속
 	class ServerReceiver extends Thread {
 		Socket socket;
 		DataInputStream in;
@@ -63,6 +68,7 @@ public class TcpIpMultichatServer {
 			} catch(IOException e) {}
 		}
 
+
 		public void run() {
 			String name = "";
 			try {
@@ -70,6 +76,7 @@ public class TcpIpMultichatServer {
 				name = in.readUTF();
 				sendToAll("#"+name+"님이 들어오셨습니다.");
 
+				//사용자 name, output객체 집어넣음
 				clients.put(name, out);
 				System.out.println("현재 서버접속자 수는 " + clients.size() + "입니다.");
 				while(in!=null) {
