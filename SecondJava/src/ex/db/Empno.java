@@ -11,6 +11,7 @@ public class Empno {
 	public static void main(String[] args) {
 		//사원번호를 입력받아 정보출력
 		try {
+			//1단계 DB 드라이버 실행
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			//2단계 연결(DB 로그인)
@@ -24,7 +25,7 @@ public class Empno {
 			int empno = scanner.nextInt();
 			
 			//String sql = "select * from emp where empno = "+empno; => 이렇게 써도 작동은 하는데 보안적(sql Injection)으로 안좋음 따라서 대신 ? 넣어야함
-			String sql = "select * from test where empno = ?";
+			String sql = "select * from emp where empno = ?";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1,empno);
 			ResultSet rs = pstmt.executeQuery();

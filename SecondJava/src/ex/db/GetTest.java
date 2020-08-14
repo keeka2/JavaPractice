@@ -7,23 +7,25 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Scanner;
 
+
+/*
+ * oracle 8 9 - i(internet 웹기술 제공)
+ * oracle 10 11 - g(grid - 여러대의 컴퓨터를 모아 하나의 고성능의 컴퓨터로)
+ * oracle 12 - c(cloud)
+ * */
+
+
 public class GetTest {
 	public static void main(String[] args) {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			
-			//2단계 연결(DB 로그인)
-			String url = "jdbc:oracle:thin:@nullmaster.iptime.org:1521:orcl";
-			String user = "class12", pw="class12";
-			
-			//경로 유저 패스워드 입력하여 로그인
-			Connection connection = DriverManager.getConnection(url,user,pw);
+			Connection connection = OracleConnection.getConnection();
 			Scanner scanner = new Scanner(System.in);
 			System.out.print("ID: ");
 			String id_in = scanner.nextLine();
 			
-			//String sql = "select * from emp where empno = "+empno; => 이렇게 써도 작동은 하는데 보안적(sql Injection)으로 안좋음 따라서 대신 ? 넣어야함
+			//String sql = "select * from test where empno = "+empno; => 이렇게 써도 작동은 하는데 보안적(sql Injection)으로 안좋음 따라서 대신 ? 넣어야함
 			String sql = "select * from test where ID = ?";
+			//String sql = "select * from test where ID = \'"+id_in+"\'";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1,id_in);
 			ResultSet rs = pstmt.executeQuery();
@@ -36,11 +38,13 @@ public class GetTest {
 			}else {
 				System.out.println("fuck you");
 			}
-			rs.close();
-			pstmt.close();
-			connection.close();
+			
+			//close 문장은 finally에 넣는게 좋음
+			OracleConnection.dbclose(connection, pstmt, rs);
+			
 			
 		}catch (Exception e) {
+			System.out.println("fuck you");
 			// TODO: handle exception
 		}
 	}
