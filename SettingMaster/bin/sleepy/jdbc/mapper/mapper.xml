@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="emp">
+	<!-- result type - 결과 데이터 타입 -->
+	<!-- restult type에 DTO 넣으면 해당 클래스 형식으로 받을 수 있음 -->
+	<select id="empCount" resultType="int">
+		select count(*) from emp
+	</select>
+	
+	<select id="getEmp" resultType="sleepy.jdbc.bean.EmpDTO" parameterType="sleepy.jdbc.bean.EmpDTO">
+		select * from emp where sal>#{sal} and deptno=#{deptno}
+	</select>
+	<!-- ("book"->"bookCount) = (book.bookCount)" -->
+	
+	<select id="empNum"  resultType="sleepy.jdbc.bean.EmpDTO" parameterType="int">
+		<!--select * from book where num = ?-->
+		select * from emp where empno = #{empno}
+	</select>
+</mapper>

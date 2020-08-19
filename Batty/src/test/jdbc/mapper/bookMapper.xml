@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boogie">
+	<select id="bookIf" resultType="test.jdbc.bean.BookDTO" parameterType="int">
+		select * from book
+		<if test="num > 0">
+			where num=#{num}
+		</if>
+	</select>
+	
+	<select id="bookChoose" resultType="test.jdbc.bean.BookDTO" 
+							parameterType="test.jdbc.bean.BookDTO">
+		select * from book
+		<choose>
+		<!-- 둘 중 하나만 -->
+			<when test="num>0">
+				where num=#{num}
+			</when>
+			<when test="writer != null">
+				where writer=#{writer}
+			</when>
+		</choose>
+	</select>
+	
+	<!--  처음 조건 만족 안하면 뒤의 and 지워서 조건 맞춰줌 -->
+	<!-- 마지막 조건은 suffixOverrides 사용 -->
+	<select id="bookTrim" resultType="test.jdbc.bean.BookDTO" 
+							parameterType="test.jdbc.bean.BookDTO">
+		select * from book
+		<trim prefix="where" prefixOverrides="and">
+			<if test="num>0">
+				num=#{num}
+			</if>
+			<if test="writer != null">
+				and writer=#{writer}
+			</if>
+		</trim>
+	</select>
+	
+	<update id="bookUpdate" parameterType="test.jdbc.bean.BookDTO">
+		update book
+			<trim prefix="set" suffixOverrides=",">
+				<if test="writer != null">writer=#{writer},</if>
+				<if test="title != null">title=#{title},</if>
+				<if test="content != null">content=#{content},</if>
+			</trim>
+		where num=#{num}
+	</update>
+</mapper>

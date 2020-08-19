@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- 
+doctype 안에 잇는 내용에 따라 달라짐
+ -->
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+            <!-- jdbc의 1,2단계 --> 
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver" />
+                <property name="url" value="jdbc:oracle:thin:@nullmaster.iptime.org:1521:orcl" />
+                <property name="username" value="class12" />
+                <property name="password" value="class12" />
+                
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+    <!-- jdbc의 3,4 ...단계 --> 
+    <!-- table 당 하나 만드는게 좋음 -->
+        <mapper resource="sleepy/jdbc/mapper/mapper.xml" />
+    </mappers>
+</configuration>
+
+

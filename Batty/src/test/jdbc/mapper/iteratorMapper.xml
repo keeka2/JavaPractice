@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ford">
+	<select id="checkBook" resultType="test.jdbc.bean.BookDTO" parameterType="list">
+		<!--  ㅁㅁㅁ in (a,b,c,d,e,f,g...) -->
+		select * from book where writer in
+			<foreach item="data" index="index" collection="list" 
+				open="(" separator="," close=")">
+				#{data}
+			</foreach>
+	</select>
+	
+	<select id="bookLike" resultType="test.jdbc.bean.BookDTO"
+						  parameterType="String">
+		select * from book where writer like '%'||#{value}||'%'
+	</select>
+</mapper>
