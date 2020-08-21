@@ -15,4 +15,8 @@
 						  parameterType="String">
 		select * from book where writer like '%'||#{value}||'%'
 	</select>
+	
+	<select id="bookLike2" resultType="test.jdbc.bean.BookDTO" parameterType="hashmap">
+		select * from book where ${column} like '%'||#{value}||'%'
+	</select>
 </mapper>

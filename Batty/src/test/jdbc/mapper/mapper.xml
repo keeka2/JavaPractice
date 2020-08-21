@@ -47,5 +47,7 @@
 	<sql id="whereNum">
 		where num = #{num}
 	</sql>
+	
+	
 
 </mapper>

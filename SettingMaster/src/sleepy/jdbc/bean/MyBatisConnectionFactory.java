@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
+//Ä¿³Ø¼Ç pool
 public class MyBatisConnectionFactory {
 	private static SqlSessionFactory sqlSessionFactory;
 	static {
